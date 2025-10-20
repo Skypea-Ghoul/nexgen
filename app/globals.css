@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+:root {
+  --color-primary: #39FF14;
+  --color-background: #0A0A0A;
+  --color-text-primary: #E0E0E0;
+  --color-text-secondary: #F0F0F0;
+}
+
+body {
+  color: var(--color-text-primary);
+  background: var(--color-background);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-mono);
+  color: var(--color-primary);
+  text-shadow:
+    0 0 5px var(--color-primary),
+    0 0 10px var(--color-primary),
+    0 0 20px var(--color-primary),
+    0 0 40px #000,
+    0 0 50px #000;
+}
+
+@keyframes floatY {
+  0%   { transform: translateY(0px); }
+  25%  { transform: translateY(-6px); }
+  50%  { transform: translateY(0px); }
+  75%  { transform: translateY(4px); }
+  100% { transform: translateY(0px); }
+}
+
+.floating-nav {
+  animation: floatY 6s ease-in-out infinite;
+  will-change: transform;
+  /* subtle neon rim to emphasize floating effect */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6), 0 2px 8px rgba(57,255,20,0.03);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+/* pause animation on hover and lift slightly */
+.floating-nav:hover {
+  animation-play-state: paused;
+  transform: translateY(-10px) scale(1.01);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.7), 0 6px 24px rgba(57,255,20,0.06);
+}
+
+/* respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .floating-nav {
+    animation: none;
+    transition: transform 0.2s ease;
+  }
+}
+
+.text-glow-purple {
+  color: #8F00FF;
+  text-shadow:
+    0 0 5px #8F00FF,
+    0 0 10px #8F00FF,
+    0 0 20px #8F00FF,
+    0 0 40px #000,
+    0 0 50px #000;
+}
+
+.text-glow-blue {
+  color: #3B82F6;
+  text-shadow:
+    0 0 5px #3B82F6,
+    0 0 10px #3B82F6,
+    0 0 20px #3B82F6,
+    0 0 40px #000,
+    0 0 50px #000;
+}
+
+.contact-heading {
+  font-family: inherit !important;
+  text-shadow: none !important;
+}
+
+@layer utilities {
+  .flex-center {
+    @apply flex justify-center items-center;
+  }
+}
